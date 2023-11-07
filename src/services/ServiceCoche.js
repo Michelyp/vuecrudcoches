@@ -16,9 +16,20 @@ export default class ServiceCoches{
         return new Promise(function(resolve){
             var request ="api/coches/insertcoche";
             var url = Global.urlApiCoches + request;
-            axios.post(url,coche).then(response =>{
-                resolve(response);
-            })
+            const requestOptions={
+                method:'POST',
+                headers:{'Content-Type':'application/json'},
+                body: JSON.stringify(coche)
+            }
+
+            fetch(url, requestOptions)
+            .then(response =>  {
+                resolve(response)
+            });
+            
+            // axios.post(url,coche).then(response =>{
+            //     resolve(response);
+            // })
         })
     }
     findCoche(id){
